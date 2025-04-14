@@ -37,6 +37,8 @@ const layout = ({ children }: { children: React.ReactNode }) => {
           { id: "tilequery", label: "TileQuery", value: "tilequery" },
           // { id: "upload", label: "Upload", value: "upload" },
           { id: "vector", label: "Vector", value: "vector" },
+          { id: "allevents", label: "AllEvents", value: "allevents" },
+          { id: "flyrandom", label: "FlyRandom", value: "flyrandom" },
         ]}
         onChange={(value) => {
           router.push(`/map/types/${value}`);

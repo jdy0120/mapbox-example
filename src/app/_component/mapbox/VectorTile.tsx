@@ -16,19 +16,48 @@ const VectorMap = () => {
     });
 
     map.on("load", () => {
-      map.addSource("mapbox-streets", {
-        type: "vector",
-        url: "mapbox://mapbox.mapbox-streets-v8",
+      // 🚧 도로 레이어
+      map.addLayer({
+        id: "my-roads",
+        type: "line",
+        source: {
+          type: "vector",
+          url: "mapbox://mapbox.mapbox-streets-v8",
+        },
+        "source-layer": "road",
+        paint: {
+          "line-color": "#ff4d4f",
+          "line-width": 2,
+        },
       });
 
+      // 🏢 건물 레이어
       map.addLayer({
-        id: "road-layer",
-        type: "line",
-        source: "mapbox-streets",
-        "source-layer": "road", // 🧠 실제 레이어 이름 (Mapbox Docs 참고)
+        id: "my-buildings",
+        type: "fill",
+        source: {
+          type: "vector",
+          url: "mapbox://mapbox.mapbox-streets-v8",
+        },
+        "source-layer": "building",
         paint: {
-          "line-color": "#ff0000",
-          "line-width": 2,
+          "fill-color": "#3f6600",
+          "fill-opacity": 0.5,
+        },
+      });
+
+      // 🌊 수역 레이어
+      map.addLayer({
+        id: "my-water",
+        type: "fill",
+        source: {
+          type: "vector",
+          url: "mapbox://mapbox.mapbox-streets-v8",
+        },
+        "source-layer": "water",
+        paint: {
+          "fill-color": "#1890ff",
+          "fill-opacity": 0.6,
         },
       });
     });
